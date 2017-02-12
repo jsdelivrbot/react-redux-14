@@ -1,8 +1,18 @@
 import React, { Component } from 'react'; //Need to import react, because this component has jsx
 
 class SearchBar extends Component {
-  render(){
-    return <input onChange={(event)=>console.log(event.target.value)}/>; //HTML elements emit a change event (vanilla html). Make event={reference to event handler}. Wrap javascript references inside curly braces. The thigns in the curly braces are a prop, or property.
+  constructor(props){ //Define our own constructor
+    super(props);   //Call the parent constructor. 'props' is the property parameter that can be passed in to Components.
+
+    this.state = {term : ''}; //Only ever set state this way in the constructor. Every other time use setState, because we want to trigger a rerender of this and all child components.
+  }
+  render(){ //HTML elements emit a change event (vanilla html). Make event={reference to event handler}. Wrap javascript references inside curly braces. The thigns in the curly braces are a prop, or property.
+    return(
+      <div>
+        <input onChange={(event)=>this.setState({term: event.target.value})}/>
+        Value of the input: {this.state.term}
+      </div>
+    );
   }
 }
 
