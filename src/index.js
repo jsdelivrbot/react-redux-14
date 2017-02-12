@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 import YTSearch from 'youtube-api-search';
 const API_KEY = 'AIzaSyBxJW5dxz_Nnv_TwhP83X3ZK9Pw6Is7TJw'
 
@@ -19,8 +20,11 @@ class App extends Component{
   }
   render(){
     return ( //SearchBar is jsx for a React functional component, wrapped in tags to instantiate it.
+
+      //We hand videos={this.state.videos}, in order to hand videos as a 'prop' into the VideoList component. This will arrive as an arguement to VideoList, called 'props.videos'
       <div>
         <SearchBar />
+        <VideoList videos={this.state.videos}/>
       </div> //Now that we have imported SearchBar, we can display it here
     );
   }
