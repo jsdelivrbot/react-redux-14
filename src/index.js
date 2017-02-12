@@ -21,7 +21,7 @@ class App extends Component{
   render(){
     return ( //SearchBar is jsx for a React functional component, wrapped in tags to instantiate it.
 
-      //We hand videos={this.state.videos}, in order to hand videos as a 'prop' into the VideoList component. This will arrive as an arguement to VideoList, called 'props.videos'
+      //We hand videos={this.state.videos}, in order to hand videos as a 'prop' into the VideoList component. This will arrive as an arguement to VideoList, called 'props.videos'. Note, if VideoList was a class, props would be available anywhere via this.props.whateverKey, instead of via the arguement props.whateverKey.
       <div>
         <SearchBar />
         <VideoList videos={this.state.videos}/>
