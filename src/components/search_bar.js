@@ -9,8 +9,8 @@ class SearchBar extends Component {
   render(){ //HTML elements emit a change event (vanilla html). Make event={reference to event handler}. Wrap javascript references inside curly braces. The thigns in the curly braces are a prop, or property.
     return(
       <div>
-        <input onChange={(event)=>this.setState({term: event.target.value})}/>
-        Value of the input: {this.state.term}
+       <input value = {this.state.term}
+        onChange={(event)=>this.setState({term: event.target.value})}/>
       </div>
     );
   }
