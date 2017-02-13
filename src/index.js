@@ -30,10 +30,17 @@ class App extends Component{
     return ( //SearchBar is jsx for a React functional component, wrapped in tags to instantiate it.
 
       //We hand videos={this.state.videos}, in order to hand videos as a 'prop' into the VideoList component. This will arrive as an arguement to VideoList, called 'props.videos'. Note, if VideoList was a class, props would be available anywhere via this.props.whateverKey, instead of via the arguement props.whateverKey.
+
+      //Explanation of callback function. onVideoSelect is a function.
+      //When it is called with an arguement, it sets the state of
+      //the Apps state.selectedVideo to the selectedVideo arguement.
       <div>
         <SearchBar />
         <VideoDetail video={this.state.selectedVideo}/>
-        <VideoList videos={this.state.videos}/>
+        <VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+          videos={this.state.videos}
+        />
       </div> //Now that we have imported SearchBar, we can display it here
     );
   }
