@@ -17,8 +17,12 @@ class App extends Component{
       selectedVideo : null
     };
 
+    this.videoSearch('haskell');
+  }
+
+  videoSearch(term){
     YTSearch(
-      {key :API_KEY, term: 'java'},
+      {key :API_KEY, term: term},
       (videos) => {this.setState(
         {
           videos: videos,
@@ -26,6 +30,7 @@ class App extends Component{
         });
       });
   }
+
   render(){
     return ( //SearchBar is jsx for a React functional component, wrapped in tags to instantiate it.
 
@@ -35,7 +40,7 @@ class App extends Component{
       //When it is called with an arguement, it sets the state of
       //the Apps state.selectedVideo to the selectedVideo arguement.
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term=>this.videoSearch(term)}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
