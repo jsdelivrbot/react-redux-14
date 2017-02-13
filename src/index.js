@@ -12,12 +12,19 @@ class App extends Component{
   constructor(props){
     super(props);
 
-    this.state = {videos:[]};
+    this.state = {
+      videos:[],
+      selectedVideo : null
+    };
 
     YTSearch(
       {key :API_KEY, term: 'java'},
-      (videos) => {this.setState({videos})}
-    );
+      (videos) => {this.setState(
+        {
+          videos: videos,
+          selectedVideo: videos[0]
+        });
+      });
   }
   render(){
     return ( //SearchBar is jsx for a React functional component, wrapped in tags to instantiate it.
@@ -25,7 +32,7 @@ class App extends Component{
       //We hand videos={this.state.videos}, in order to hand videos as a 'prop' into the VideoList component. This will arrive as an arguement to VideoList, called 'props.videos'. Note, if VideoList was a class, props would be available anywhere via this.props.whateverKey, instead of via the arguement props.whateverKey.
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos}/>
       </div> //Now that we have imported SearchBar, we can display it here
     );
